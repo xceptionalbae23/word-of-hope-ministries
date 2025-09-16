@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
+import Header from './components/Header';
+import Hero from './components/Hero';
 
 function App() {
   return (
     <div className="App">
-      <h1>WOHI Ministries Test</h1>
-      <p>Testing if React is working...</p>
+      <Header />
+      <Hero />
     </div>
   );
 }
