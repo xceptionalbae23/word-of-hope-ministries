@@ -25,16 +25,20 @@ const Hero = () => {
             <h1 className="text-4xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
               Welcome to{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-amber-600">
-                Word of Hope
+                WOHI Ministries
               </span>
             </h1>
             
-            <p className="text-xl lg:text-2xl text-slate-600 mb-4 font-medium">
+            <h2 className="text-xl lg:text-2xl text-slate-600 mb-4 font-medium">
+              Worldwide Canada
+            </h2>
+            
+            <p className="text-lg text-slate-600 mb-6 max-w-2xl mx-auto lg:mx-0">
               {ministryInfo.tagline}
             </p>
-            
-            <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              {ministryInfo.mission.substring(0, 200)}...
+
+            <p className="text-base text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+              In Collaboration With Life-Giving Word Mission Nigeria
             </p>
 
             <div className="bg-blue-900 text-white px-6 py-4 rounded-lg mb-8 inline-block">
@@ -77,11 +81,11 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200">
               <div className="text-center">
-                <p className="text-3xl font-bold text-blue-800">5+</p>
+                <p className="text-3xl font-bold text-blue-800">6+</p>
                 <p className="text-sm text-slate-600">Countries Reached</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-amber-600">20+</p>
+                <p className="text-3xl font-bold text-amber-600">25+</p>
                 <p className="text-sm text-slate-600">Years of Ministry</p>
               </div>
               <div className="text-center">
@@ -91,20 +95,49 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image/Visual */}
+          {/* Leadership Showcase */}
           <div className="relative">
-            <div className="relative bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-              <img
-                src={ministryInfo.founder.image}
-                alt="Apostle Sandra Ross"
-                className="w-full h-80 object-cover rounded-lg mb-4"
-              />
-              <div className="text-center">
-                <h3 className="text-xl font-bold text-slate-800">Apostle Sandra Ross</h3>
-                <p className="text-amber-600 font-medium">Founder & President</p>
-                <p className="text-sm text-slate-600 mt-2">
-                  Leading missions worldwide since 1996
-                </p>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Apostle Sandra Ross - Main */}
+              <div className="col-span-2 relative bg-white rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-500">
+                <img
+                  src={ministryInfo.leadership[0].image}
+                  alt="Apostle Sandra Ross"
+                  className="w-full h-64 object-cover rounded-lg mb-4"
+                />
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-slate-800">{ministryInfo.leadership[0].name}</h3>
+                  <p className="text-amber-600 font-medium">{ministryInfo.leadership[0].title}</p>
+                  <p className="text-sm text-slate-600 mt-2">
+                    Leading missions worldwide since 1996
+                  </p>
+                </div>
+              </div>
+              
+              {/* Co-Founder David */}
+              <div className="relative bg-white rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500">
+                <img
+                  src={ministryInfo.leadership[2].image}
+                  alt="David Murray Ross"
+                  className="w-full h-32 object-cover rounded-lg mb-3"
+                />
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-slate-800">{ministryInfo.leadership[2].name}</h4>
+                  <p className="text-amber-600 text-sm font-medium">{ministryInfo.leadership[2].title}</p>
+                </div>
+              </div>
+              
+              {/* Vice President */}
+              <div className="relative bg-white rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500">
+                <img
+                  src={ministryInfo.leadership[1].image}
+                  alt="Bishop Dr. Lawyer Isiwekpeni Ekpaah"
+                  className="w-full h-32 object-cover rounded-lg mb-3"
+                />
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-slate-800">Bishop Dr. Lawyer</h4>
+                  <p className="text-amber-600 text-sm font-medium">Vice President</p>
+                </div>
               </div>
             </div>
             

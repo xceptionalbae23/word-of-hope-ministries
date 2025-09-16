@@ -3,6 +3,7 @@ import "./App.css";
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Leadership from './components/Leadership';
 import Sermons from './components/Sermons';
 import Ministries from './components/Ministries';
 import Events from './components/Events';
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <Hero />
       <About />
+      <Leadership />
       <Sermons />
       <Ministries />
       <Events />

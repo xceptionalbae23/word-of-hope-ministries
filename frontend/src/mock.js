@@ -1,7 +1,8 @@
-// Mock data for Word of Hope International Ministries Worldwide
+// Mock data for WOHI Ministries Worldwide Canada
 
 export const ministryInfo = {
-  name: "Word of Hope International Ministries Worldwide",
+  name: "WOHI Ministries Worldwide Canada",
+  fullName: "WOHI Ministries Worldwide Canada in Collaboration With Life-Giving Word Mission Nigeria",
   tagline: "Reaching the World with Hope in Christ",
   mandate: "WINNING SOULS FOR JESUS UNTIL HE COMES",
   logo: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/55ir3du7_WhatsApp%20Image%202025-09-13%20at%2008.31.01.jpeg",
@@ -14,14 +15,13 @@ export const ministryInfo = {
   },
 
   vision: [
-    "To Raise up a people totally dedicated to Jesus.",
-    "To Win souls evangelizing the world and bringing as many as we can to Heaven with us.",
-    "To plant Churches and build a family of Ministry Touching hearts and being there for others.",
-    "To make Jesus the Center. Giving God all of the Glory.",
-    "To be planting and pruning in effective Ministry."
+    "To raise up a people totally dedicated to Jesus",
+    "To win souls evangelizing the world", 
+    "To plant Churches and build a family of Ministry",
+    "To make Jesus the Center, giving God all the Glory"
   ],
 
-  mission: "Our Mission Statement is to glorify God in the world and a Community in which people have an opportunity to grow in a strong relationship with Jesus Christ. To preach the gospel from sea to shining sea. Winning souls drawing them to the saving knowledge of Jesus Christ. Letting them know that Jesus loves them and they are not alone.",
+  mission: "Our Mission Statement is to glorify God in the world and a Community in which people have an opportunity to grow in a strong relationship with Jesus Christ. To preach the gospel from sea to shining sea. Winning souls drawing them to the saving knowledge of Jesus Christ.",
 
   objectives: [
     "Raising a people totally sold out and dedicated to Jesus and training them to win souls.",
@@ -34,14 +34,55 @@ export const ministryInfo = {
     "To partner with Mission minded ministries and organisations worldwide."
   ],
 
-  founder: {
-    name: "Apostle Sandra Ross",
-    image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/nl0h380p_WhatsApp%20Image%202025-09-13%20at%2008.07.04.jpeg",
-    bio: "Born March 31, 1971 in Smiths Falls Ontario Canada. Married to David Murray Ross since May 23, 1992. Graduated from World Impact Bible Institute in 1998 and Music School in 2000. Led missions trips to India in 2005 and 2010, with ongoing invitations from Pakistan, India, Nigeria, Kenya and other nations.",
-    husband: "David Murray Ross"
-  },
+  leadership: [
+    {
+      name: "Apostle Sandra Ross",
+      title: "President & Founder",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/nl0h380p_WhatsApp%20Image%202025-09-13%20at%2008.07.04.jpeg",
+      bio: "Born March 31, 1971 in Smiths Falls Ontario Canada. Married to David Murray Ross since May 23, 1992. Graduated from World Impact Bible Institute in 1998 and Music School in 2000. Led missions trips to India in 2005 and 2010, with ongoing invitations from Pakistan, India, Nigeria, Kenya and other nations.",
+      country: "Canada"
+    },
+    {
+      name: "Bishop Dr. Lawyer Isiwekpeni Ekpaah",
+      title: "Vice President",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/6fi53mld_WhatsApp%20Image%202025-09-13%20at%2019.47.50.jpeg",
+      bio: "Vice President of WOHI Ministries Canada, bringing extensive theological education and pastoral experience to the leadership team.",
+      country: "Nigeria"
+    },
+    {
+      name: "David Murray Ross",
+      title: "Co-Founder",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/6qxnvolh_WhatsApp%20Image%202025-09-13%20at%2008.07.06.jpeg",
+      bio: "Co-founder and husband of Apostle Sandra Ross. Has been walking side by side working for the cause of Christ for over 30 years, including missions trips to India in 2005 and 2010.",
+      country: "Canada"
+    }
+  ],
 
-  countries: ["Canada", "India", "Pakistan", "Nigeria", "Kenya"],
+  representatives: [
+    {
+      name: "Apostle Lambert Iku",
+      title: "Director of Mission and Evangelism/National Coordinator UK",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/u4jscu6f_WhatsApp%20Image%202025-09-13%20at%2008.07.00.jpeg",
+      membershipId: "003/WOHI",
+      country: "United Kingdom"
+    },
+    {
+      name: "Pastor Darlington Okoro",
+      title: "International Coordinator",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/9u69o3ww_WhatsApp%20Image%202025-09-13%20at%2008.07.07.jpeg",
+      membershipId: "004/WOHI",
+      country: "Nigeria"
+    },
+    {
+      name: "Shahbaz Masih",
+      title: "National Coordinator Pakistan",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/h4ccg6lg_WhatsApp%20Image%202025-09-13%20at%2018.59.38.jpeg",
+      membershipId: "002/WOHI",
+      country: "Pakistan"
+    }
+  ],
+
+  countries: ["Canada", "Nigeria", "United Kingdom", "Pakistan", "India", "Kenya"],
 
   upcomingEvents: [
     {
@@ -83,7 +124,7 @@ export const ministryInfo = {
     {
       id: 2,
       title: "Walking in Faith Through Missions",
-      speaker: "David Ross",
+      speaker: "David Murray Ross",
       date: "2025-01-05",
       duration: "38 mins",
       scripture: "Hebrews 11:1",
@@ -104,7 +145,7 @@ export const ministryInfo = {
     {
       id: 1,
       name: "International Missions",
-      description: "Reaching the unreached in India, Pakistan, Nigeria, Kenya and beyond",
+      description: "Reaching the unreached in Nigeria, UK, Pakistan, India, Kenya and beyond",
       icon: "Globe"
     },
     {
@@ -177,7 +218,7 @@ export const ministryInfo = {
       id: 2,
       title: "The Power of Partnership in Missions",
       excerpt: "Discover how partnering with local ministries amplifies the impact of the Gospel around the world.",
-      author: "David Ross",
+      author: "David Murray Ross",
       date: "2025-01-10",
       readTime: "4 min read",
       image: "/api/placeholder/400/200"

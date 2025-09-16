@@ -11,6 +11,7 @@ const Header = () => {
   const navItems = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
+    { label: 'Leadership', href: '#leadership' },
     { label: 'Sermons', href: '#sermons' },
     { label: 'Ministries', href: '#ministries' },
     { label: 'Events', href: '#events' },
@@ -64,10 +65,10 @@ const Header = () => {
               />
               <div>
                 <h1 className="text-lg font-bold text-slate-800 leading-tight">
-                  Word of Hope International
+                  {ministryInfo.name}
                 </h1>
-                <p className="text-sm text-amber-600 font-medium">
-                  Ministries Worldwide
+                <p className="text-xs text-amber-600 font-medium">
+                  In Collaboration With Life-Giving Word Mission Nigeria
                 </p>
               </div>
             </div>
