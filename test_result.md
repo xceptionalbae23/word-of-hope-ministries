@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the WOHI Ministries backend API integration including Contact Form, Newsletter, Events, Donations, Content APIs, and Health Check endpoints"
+user_problem_statement: "Test the WOHI Ministries frontend integration including Contact Form, Newsletter, Donation Form, Navigation, Leadership Display, and Mobile Responsiveness with real backend API integration"
 
 backend:
   - task: "Health Check API"
