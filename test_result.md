@@ -270,7 +270,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All backend APIs tested and confirmed working"
+    - "Contact Form Integration"
+    - "Newsletter Signup Integration"
+    - "Donation Form Integration"
+    - "Header Navigation"
+    - "Leadership Section Display"
+    - "Mobile Responsiveness"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
