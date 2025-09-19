@@ -185,7 +185,7 @@ const Blog = () => {
                   disabled={isSubscribing}
                   className="bg-blue-800 hover:bg-blue-900 text-white px-8 disabled:bg-slate-400 disabled:cursor-not-allowed"
                 >
-                  {isSubmribing ? (
+                  {isSubscribing ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
                       Subscribing...
