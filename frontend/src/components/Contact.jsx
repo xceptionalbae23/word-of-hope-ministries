@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Youtube, Facebook, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Youtube, Facebook, Instagram, CheckCircle, AlertCircle } from 'lucide-react';
 import { ministryInfo, socialLinks, servicesTimes } from '../mock';
+import { contactAPI, handleAPIError } from '../services/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,10 @@ const Contact = () => {
     requestType: 'general'
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+  const [submitMessage, setSubmitMessage] = useState('');
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -21,17 +26,31 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      requestType: 'general'
-    });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+
+    try {
+      const response = await contactAPI.submit(formData);
+      setSubmitStatus('success');
+      setSubmitMessage(response.message);
+      
+      // Reset form on success
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        requestType: 'general'
+      });
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage(handleAPIError(error));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -87,6 +106,22 @@ const Contact = () => {
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold text-slate-800 mb-6">Send Us a Message</h3>
               
+              {/* Success/Error Messages */}
+              {submitStatus && (
+                <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                  submitStatus === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  {submitStatus === 'success' ? (
+                    <CheckCircle size={20} className="text-green-600" />
+                  ) : (
+                    <AlertCircle size={20} className="text-red-600" />
+                  )}
+                  <p className="text-sm">{submitMessage}</p>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -99,7 +134,8 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors disabled:bg-slate-100 disabled:cursor-not-allowed"
                       placeholder="Your full name"
                     />
                   </div>
@@ -113,7 +149,8 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors disabled:bg-slate-100 disabled:cursor-not-allowed"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -127,7 +164,8 @@ const Contact = () => {
                     name="requestType"
                     value={formData.requestType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors disabled:bg-slate-100 disabled:cursor-not-allowed"
                   >
                     <option value="general">General Inquiry</option>
                     <option value="prayer">Prayer Request</option>
@@ -147,7 +185,8 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors disabled:bg-slate-100 disabled:cursor-not-allowed"
                     placeholder="Brief subject of your message"
                   />
                 </div>
@@ -161,8 +200,9 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     rows={6}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical disabled:bg-slate-100 disabled:cursor-not-allowed"
                     placeholder="Please share your message, prayer request, or inquiry..."
                   />
                 </div>
@@ -170,10 +210,20 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-blue-800 hover:bg-blue-900 text-white"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-800 hover:bg-blue-900 text-white disabled:bg-slate-400 disabled:cursor-not-allowed"
                 >
-                  <Send className="mr-2" size={20} />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2" size={20} />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </CardContent>

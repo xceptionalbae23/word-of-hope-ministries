@@ -1,11 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Calendar, Clock, User, ArrowRight, BookOpen } from 'lucide-react';
+import { Calendar, Clock, User, ArrowRight, BookOpen, CheckCircle, AlertCircle } from 'lucide-react';
 import { ministryInfo } from '../mock';
+import { newsletterAPI, handleAPIError } from '../services/api';
 
 const Blog = () => {
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeStatus, setSubscribeStatus] = useState(null);
+  const [subscribeMessage, setSubscribeMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubscribing(true);
+    setSubscribeStatus(null);
+    setSubscribeMessage('');
+
+    try {
+      const response = await newsletterAPI.subscribe(email);
+      setSubscribeStatus('success');
+      setSubscribeMessage(response.message);
+      setEmail(''); // Reset email on success
+    } catch (error) {
+      setSubscribeStatus('error');
+      setSubscribeMessage(handleAPIError(error));
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
   return (
     <section id="blog" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -129,18 +154,47 @@ const Blog = () => {
                 Subscribe to our newsletter and receive weekly devotionals, ministry updates, and prayer requests directly to your inbox.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              {/* Success/Error Messages */}
+              {subscribeStatus && (
+                <div className={`mb-6 p-4 rounded-lg flex items-center justify-center gap-3 ${
+                  subscribeStatus === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  {subscribeStatus === 'success' ? (
+                    <CheckCircle size={20} className="text-green-600" />
+                  ) : (
+                    <AlertCircle size={20} className="text-red-600" />
+                  )}
+                  <p className="text-sm">{subscribeMessage}</p>
+                </div>
+              )}
+              
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                  disabled={isSubscribing}
+                  className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed"
                 />
                 <Button 
-                  className="bg-blue-800 hover:bg-blue-900 text-white px-8"
+                  type="submit"
+                  disabled={isSubscribing}
+                  className="bg-blue-800 hover:bg-blue-900 text-white px-8 disabled:bg-slate-400 disabled:cursor-not-allowed"
                 >
-                  Subscribe
+                  {isSubmribing ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Subscribing...
+                    </>
+                  ) : (
+                    'Subscribe'
+                  )}
                 </Button>
-              </div>
+              </form>
               
               <p className="text-xs text-slate-500 mt-4">
                 We respect your privacy. Unsubscribe at any time.

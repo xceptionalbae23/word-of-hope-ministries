@@ -2,13 +2,23 @@ import React, { useState } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Heart, CreditCard, Globe, Church, BookOpen, Users, Shield, Check } from 'lucide-react';
+import { Heart, CreditCard, Globe, Church, BookOpen, Users, Shield, Check, CheckCircle, AlertCircle } from 'lucide-react';
 import { ministryInfo } from '../mock';
+import { donationsAPI, handleAPIError } from '../services/api';
 
 const Donate = () => {
   const [selectedAmount, setSelectedAmount] = useState(50);
   const [donationType, setDonationType] = useState('one-time');
   const [selectedCause, setSelectedCause] = useState('general');
+  const [donorInfo, setDonorInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
+  
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [donationStatus, setDonationStatus] = useState(null);
+  const [donationMessage, setDonationMessage] = useState('');
 
   const donationAmounts = [25, 50, 100, 250, 500];
   
@@ -28,9 +38,45 @@ const Donate = () => {
     'Impact reports and testimonies'
   ];
 
-  const handleSubmit = (e) => {
+  const handleDonorInfoChange = (e) => {
+    setDonorInfo({
+      ...donorInfo,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleDonationSubmit = async (e) => {
     e.preventDefault();
-    alert(`Thank you for your ${donationType === 'one-time' ? 'one-time' : 'monthly'} donation of $${selectedAmount} to ${causes.find(c => c.id === selectedCause)?.name}! This is a mock implementation.`);
+    setIsProcessing(true);
+    setDonationStatus(null);
+    setDonationMessage('');
+
+    try {
+      const donationData = {
+        donorName: `${donorInfo.firstName} ${donorInfo.lastName}`,
+        email: donorInfo.email,
+        amount: selectedAmount,
+        currency: 'CAD',
+        donationType: donationType === 'one-time' ? 'one-time' : 'monthly',
+        cause: selectedCause
+      };
+
+      const response = await donationsAPI.createIntent(donationData);
+      setDonationStatus('success');
+      setDonationMessage(response.message);
+      
+      // Reset form on success (except amount and cause selection)
+      setDonorInfo({
+        firstName: '',
+        lastName: '',
+        email: ''
+      });
+    } catch (error) {
+      setDonationStatus('error');
+      setDonationMessage(handleAPIError(error));
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -61,7 +107,23 @@ const Donate = () => {
                 Make a Donation
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Success/Error Messages */}
+              {donationStatus && (
+                <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                  donationStatus === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  {donationStatus === 'success' ? (
+                    <CheckCircle size={20} className="text-green-600" />
+                  ) : (
+                    <AlertCircle size={20} className="text-red-600" />
+                  )}
+                  <p className="text-sm">{donationMessage}</p>
+                </div>
+              )}
+
+              <form onSubmit={handleDonationSubmit} className="space-y-6">
                 {/* Donation Type */}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-3">
@@ -71,7 +133,8 @@ const Donate = () => {
                     <button
                       type="button"
                       onClick={() => setDonationType('one-time')}
-                      className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all duration-300 ${
+                      disabled={isProcessing}
+                      className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all duration-300 disabled:cursor-not-allowed ${
                         donationType === 'one-time' 
                           ? 'border-red-600 bg-red-50 text-red-700' 
                           : 'border-slate-200 text-slate-600 hover:border-red-300'
@@ -82,7 +145,8 @@ const Donate = () => {
                     <button
                       type="button"
                       onClick={() => setDonationType('monthly')}
-                      className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all duration-300 ${
+                      disabled={isProcessing}
+                      className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all duration-300 disabled:cursor-not-allowed ${
                         donationType === 'monthly' 
                           ? 'border-red-600 bg-red-50 text-red-700' 
                           : 'border-slate-200 text-slate-600 hover:border-red-300'
@@ -96,7 +160,7 @@ const Donate = () => {
                 {/* Amount Selection */}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-3">
-                    Donation Amount
+                    Donation Amount (CAD)
                   </label>
                   <div className="grid grid-cols-3 gap-3 mb-4">
                     {donationAmounts.map((amount) => (
@@ -104,7 +168,8 @@ const Donate = () => {
                         key={amount}
                         type="button"
                         onClick={() => setSelectedAmount(amount)}
-                        className={`py-3 px-4 rounded-lg border-2 font-medium transition-all duration-300 ${
+                        disabled={isProcessing}
+                        className={`py-3 px-4 rounded-lg border-2 font-medium transition-all duration-300 disabled:cursor-not-allowed ${
                           selectedAmount === amount 
                             ? 'border-red-600 bg-red-600 text-white' 
                             : 'border-slate-200 text-slate-600 hover:border-red-300'
@@ -120,7 +185,8 @@ const Donate = () => {
                       type="number"
                       value={selectedAmount}
                       onChange={(e) => setSelectedAmount(Number(e.target.value))}
-                      className="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      disabled={isProcessing}
+                      className="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed"
                       placeholder="Enter custom amount"
                       min="1"
                     />
@@ -140,7 +206,8 @@ const Donate = () => {
                           key={cause.id}
                           type="button"
                           onClick={() => setSelectedCause(cause.id)}
-                          className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-300 ${
+                          disabled={isProcessing}
+                          className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-300 disabled:cursor-not-allowed ${
                             selectedCause === cause.id 
                               ? 'border-red-600 bg-red-50' 
                               : 'border-slate-200 hover:border-red-300'
@@ -172,32 +239,54 @@ const Donate = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     type="text"
+                    name="firstName"
+                    value={donorInfo.firstName}
+                    onChange={handleDonorInfoChange}
                     required
-                    className="px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    disabled={isProcessing}
+                    className="px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed"
                     placeholder="First Name"
                   />
                   <input
                     type="text"
+                    name="lastName"
+                    value={donorInfo.lastName}
+                    onChange={handleDonorInfoChange}
                     required
-                    className="px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    disabled={isProcessing}
+                    className="px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed"
                     placeholder="Last Name"
                   />
                 </div>
 
                 <input
                   type="email"
+                  name="email"
+                  value={donorInfo.email}
+                  onChange={handleDonorInfoChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                  disabled={isProcessing}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed"
                   placeholder="Email Address"
                 />
 
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-red-600 hover:bg-red-700 text-white"
+                  disabled={isProcessing}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white disabled:bg-slate-400 disabled:cursor-not-allowed"
                 >
-                  <CreditCard className="mr-2" size={20} />
-                  Donate ${selectedAmount} {donationType === 'monthly' ? 'Monthly' : 'Now'}
+                  {isProcessing ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <CreditCard className="mr-2" size={20} />
+                      Donate ${selectedAmount} {donationType === 'monthly' ? 'Monthly' : 'Now'}
+                    </>
+                  )}
                 </Button>
 
                 <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
