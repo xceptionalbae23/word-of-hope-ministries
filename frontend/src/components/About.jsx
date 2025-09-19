@@ -55,15 +55,15 @@ const About = () => {
               <CardContent className="p-8">
                 <div className="text-center mb-6">
                   <img
-                    src={ministryInfo.founder.image}
+                    src={ministryInfo.leadership[0].image}
                     alt="Apostle Sandra Ross"
                     className="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg"
                   />
-                  <h4 className="text-xl font-bold text-slate-800">{ministryInfo.founder.name}</h4>
+                  <h4 className="text-xl font-bold text-slate-800">{ministryInfo.leadership[0].name}</h4>
                   <p className="text-amber-600 font-medium">Founder & President</p>
                 </div>
                 <p className="text-sm text-slate-600 text-center">
-                  {ministryInfo.founder.bio}
+                  {ministryInfo.leadership[0].bio}
                 </p>
               </CardContent>
             </Card>
