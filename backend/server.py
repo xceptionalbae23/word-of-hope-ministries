@@ -90,7 +90,7 @@ async def get_ministry_info():
                 "country": "Canada"
             },
             {
-                "name": "Bishop Dr. Lawyer Isiwekpeni Ekpaah",
+                "name": "Bishop Elect Dr. Lawyer Isiwekpeni Ekpaah, PhD",
                 "title": "Vice President",
                 "country": "Nigeria"
             },
