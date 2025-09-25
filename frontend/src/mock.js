@@ -43,9 +43,9 @@ export const ministryInfo = {
       country: "Canada"
     },
     {
-      name: "Bishop Dr. Lawyer Isiwekpeni Ekpaah",
+      name: "Bishop Elect Dr. Lawyer Isiwekpeni Ekpaah, PhD",
       title: "Vice President",
-      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/6fi53mld_WhatsApp%20Image%202025-09-13%20at%2019.47.50.jpeg",
+      image: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/05g7xavs_WhatsApp%20Image%202025-09-22%20at%2013.40.27.jpeg",
       bio: "Vice President of WOHI Ministries Canada, bringing extensive theological education and pastoral experience to the leadership team.",
       country: "Nigeria"
     },
