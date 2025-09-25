@@ -117,7 +117,7 @@ async def get_ministry_info():
                 "country": "Pakistan"
             }
         ],
-        "countries": ["Canada", "Nigeria", "United Kingdom", "Pakistan", "India", "Kenya"]
+        "countries": ["Canada", "Nigeria", "United Kingdom", "Pakistan", "India", "Kenya", "Zambia", "Tanzania"]
     }
 
 @api_router.get("/sermons")
