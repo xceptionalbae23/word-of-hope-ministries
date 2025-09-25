@@ -82,7 +82,7 @@ export const ministryInfo = {
     }
   ],
 
-  countries: ["Canada", "Nigeria", "United Kingdom", "Pakistan", "India", "Kenya"],
+  countries: ["Canada", "Nigeria", "United Kingdom", "Pakistan", "India", "Kenya", "Zambia", "Tanzania"],
 
   upcomingEvents: [
     {
