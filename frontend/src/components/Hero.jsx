@@ -26,7 +26,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://customer-assets.emergentagent.com/job_gracepath/artifacts/mklr3pn2_WhatsApp%20Image%202025-09-22%20at%2014.34.30.jpeg')`
+          backgroundImage: `url('https://customer-assets.emergentagent.com/job_gracepath/artifacts/7kdof6fl_WhatsApp%20Image%202025-09-22%20at%2014.47.50.jpeg')`
         }}
       >
         {/* Gradient overlay for better text readability */}
