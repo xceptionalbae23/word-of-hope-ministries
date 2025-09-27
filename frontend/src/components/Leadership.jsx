@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
-import { MapPin, Crown, Users, Globe } from 'lucide-react';
+import { Button } from './ui/button';
+import { MapPin, Crown, Users, Globe, Camera } from 'lucide-react';
 import { ministryInfo } from '../mock';
+import PhotoGallery from './PhotoGallery';
+import SocialMediaLinks from './SocialMediaLinks';
 
 const Leadership = () => {
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
+  const openGallery = (country) => {
+    setSelectedCountry(country);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+    setSelectedCountry(null);
+  };
+
   return (
     <section id="leadership" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -112,31 +128,62 @@ const Leadership = () => {
           </div>
         </div>
 
-        {/* Ministry Reach */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-slate-800 mb-8">Global Ministry Reach</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {ministryInfo.countries.map((country, index) => (
-              <Card key={index} className="shadow-md hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Globe className="text-blue-800" size={24} />
-                  </div>
-                  <h4 className="font-bold text-slate-800">{country}</h4>
-                  <p className="text-sm text-slate-500">Active Ministry</p>
-                </CardContent>
-              </Card>
-            ))}
+        {/* Global Ministry Reach with Photo Galleries */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-slate-800 text-center mb-8">Global Ministry Reach</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {ministryInfo.countries.map((country, index) => {
+              const hasGallery = ministryInfo.countryGalleries[country];
+              return (
+                <Card key={index} className="shadow-md hover:shadow-lg transition-shadow duration-300 group cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+                      <Globe className="text-blue-800" size={24} />
+                    </div>
+                    <h4 className="font-bold text-slate-800 mb-2">{country}</h4>
+                    <p className="text-sm text-slate-500 mb-3">Active Ministry</p>
+                    
+                    {hasGallery ? (
+                      <Button
+                        onClick={() => openGallery(country)}
+                        variant="outline"
+                        size="sm"
+                        className="text-blue-800 border-blue-200 hover:bg-blue-50 group-hover:border-blue-400 transition-all duration-300"
+                      >
+                        <Camera size={14} className="mr-1" />
+                        View Gallery
+                      </Button>
+                    ) : (
+                      <Badge variant="outline" className="text-slate-500 border-slate-300">
+                        Gallery Coming Soon
+                      </Badge>
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
-          
-          <div className="mt-12 bg-gradient-to-r from-blue-800 to-blue-900 text-white p-8 rounded-2xl">
+        </div>
+
+        {/* Join Our Community */}
+        <div className="mb-16">
+          <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+            <CardContent className="p-8">
+              <SocialMediaLinks showJoinButton={true} />
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Ministry Commitment */}
+        <div className="text-center">
+          <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white p-8 rounded-2xl">
             <h3 className="text-2xl font-bold mb-4">Our Commitment</h3>
             <p className="text-blue-100 text-lg max-w-3xl mx-auto">
               "We are servants before we become leaders. Leaders are servants. Our commitment is to raise up a people totally dedicated to Jesus and to fulfill the call of Christ worldwide."
             </p>
             <div className="flex justify-center items-center gap-8 mt-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-amber-400">6+</div>
+                <div className="text-3xl font-bold text-amber-400">8</div>
                 <div className="text-blue-200 text-sm">Countries</div>
               </div>
               <div className="text-center">
@@ -150,6 +197,16 @@ const Leadership = () => {
             </div>
           </div>
         </div>
+
+        {/* Photo Gallery Modal */}
+        {selectedCountry && (
+          <PhotoGallery
+            country={selectedCountry}
+            photos={ministryInfo.countryGalleries[selectedCountry]}
+            isOpen={isGalleryOpen}
+            onClose={closeGallery}
+          />
+        )}
       </div>
     </section>
   );

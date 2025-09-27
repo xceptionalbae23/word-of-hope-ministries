@@ -84,6 +84,103 @@ export const ministryInfo = {
 
   countries: ["Canada", "Nigeria", "United Kingdom", "Pakistan", "India", "Kenya", "Zambia", "Tanzania"],
 
+  // Photo galleries for each country
+  countryGalleries: {
+    "India": [
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/o2va47lk_WhatsApp%20Image%202025-09-13%20at%2020.02.29.jpeg",
+        title: "Ministry Outreach in India",
+        description: "Apostle Sandra Ross leading ministry activities in India, spreading the Gospel and training local believers.",
+        date: "2010",
+        location: "Tadepalligudem, Andhra Pradesh"
+      },
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/dg14i8t3_WhatsApp%20Image%202025-09-13%20at%2020.16.09.jpeg",
+        title: "Evangelism and Soul Winning",
+        description: "Community outreach and evangelistic activities during the 2010 mission trip to South India.",
+        date: "2010",
+        location: "Andhra Pradesh, South India"
+      },
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/elzblk2p_WhatsApp%20Image%202025-09-13%20at%2020.16.20.jpeg",
+        title: "Church Planting Activities",
+        description: "Working with local pastors and leaders to establish new churches and strengthen existing congregations.",
+        date: "2005-2010",
+        location: "Tadepalligudem Region"
+      },
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/tbqnd4ua_WhatsApp%20Image%202025-09-13%20at%2020.23.07.jpeg",
+        title: "Training Local Ministers",
+        description: "Equipping local ministers and church leaders with biblical knowledge and ministry skills.",
+        date: "2005-2010",
+        location: "South India"
+      }
+    ],
+    "Canada": [
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/nl0h380p_WhatsApp%20Image%202025-09-13%20at%2008.07.04.jpeg",
+        title: "WOHI Headquarters - Hamilton",
+        description: "International headquarters of WOHI Ministries Worldwide Canada, where Apostle Sandra Ross leads the global ministry.",
+        date: "2024",
+        location: "Hamilton, Ontario"
+      }
+    ],
+    "Nigeria": [
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/05g7xavs_WhatsApp%20Image%202025-09-22%20at%2013.40.27.jpeg",
+        title: "Partnership with Life-Giving Word Mission",
+        description: "Collaboration with Bishop Elect Dr. Lawyer Isiwekpeni Ekpaah, PhD in Nigeria through Life-Giving Word Mission.",
+        date: "2024",
+        location: "Nigeria"
+      }
+    ],
+    "United Kingdom": [
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/u4jscu6f_WhatsApp%20Image%202025-09-13%20at%2008.07.00.jpeg",
+        title: "UK Ministry Operations",
+        description: "Apostle Lambert Iku leading missions and evangelism activities across the United Kingdom.",
+        date: "2024",
+        location: "United Kingdom"
+      }
+    ],
+    "Pakistan": [
+      {
+        url: "https://customer-assets.emergentagent.com/job_gracepath/artifacts/h4ccg6lg_WhatsApp%20Image%202025-09-13%20at%2018.59.38.jpeg",
+        title: "Pakistan Ministry Outreach",
+        description: "Shahbaz Masih coordinating ministry activities and church planting in Pakistan.",
+        date: "2024",
+        location: "Pakistan"
+      }
+    ],
+    "Kenya": [
+      {
+        url: "/api/placeholder/600/400",
+        title: "Kenya Mission Field",
+        description: "Ongoing ministry work and church planting activities in Kenya. Photos coming soon!",
+        date: "2024",
+        location: "Kenya"
+      }
+    ],
+    "Zambia": [
+      {
+        url: "/api/placeholder/600/400",
+        title: "Zambia Outreach",
+        description: "New ministry expansion into Zambia. Mission activities and partnerships being established.",
+        date: "2024",
+        location: "Zambia"
+      }
+    ],
+    "Tanzania": [
+      {
+        url: "/api/placeholder/600/400",
+        title: "Tanzania Ministry",
+        description: "Expanding God's kingdom in Tanzania through local partnerships and evangelism.",
+        date: "2024",
+        location: "Tanzania"
+      }
+    ]
+  },
+
   upcomingEvents: [
     {
       id: 1,
@@ -145,7 +242,7 @@ export const ministryInfo = {
     {
       id: 1,
       name: "International Missions",
-      description: "Reaching the unreached in Nigeria, UK, Pakistan, India, Kenya and beyond",
+      description: "Reaching the unreached in Nigeria, UK, Pakistan, India, Kenya, Zambia, Tanzania and beyond",
       icon: "Globe"
     },
     {
@@ -237,10 +334,10 @@ export const ministryInfo = {
 
 export const socialLinks = {
   youtube: "https://youtube.com/@wohiministriesworldwide?si=Fn-_FtPOVtJl-_kO",
-  facebook: "#",
-  instagram: "#",
-  whatsapp: "#",
-  telegram: "#"
+  facebook: "https://facebook.com/wohiministries", // Update with actual Facebook URL
+  instagram: "https://instagram.com/wohiministries", // Update with actual Instagram URL
+  whatsapp: "https://wa.me/12898873969", // WhatsApp link with phone number
+  telegram: "https://t.me/wohiministries" // Update with actual Telegram URL
 };
 
 export const servicesTimes = [
@@ -263,3 +360,6 @@ export const servicesTimes = [
     location: "Online"
   }
 ];
+
+// YouTube Live status - this would normally come from an API
+export const isYouTubeLive = false; // Set to true when streaming
