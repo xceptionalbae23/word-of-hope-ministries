@@ -44,10 +44,10 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-center lg:text-left">
-            <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 ${
+            <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm ${
               isYouTubeLive 
-                ? 'bg-red-100 text-red-800 animate-pulse' 
-                : 'bg-amber-100 text-amber-800'
+                ? 'bg-red-100 bg-opacity-90 text-red-800 animate-pulse' 
+                : 'bg-amber-100 bg-opacity-90 text-amber-800'
             }`}>
               <div className={`w-2 h-2 rounded-full mr-2 ${
                 isYouTubeLive ? 'bg-red-600 animate-pulse' : 'bg-amber-600'
@@ -55,26 +55,26 @@ const Hero = () => {
               {isYouTubeLive ? 'LIVE NOW on YouTube' : 'Live Streaming Available'}
             </div>
             
-            <h1 className="text-4xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
               Welcome to{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-amber-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-400 drop-shadow-lg">
                 WOHI Ministries
               </span>
             </h1>
             
-            <h2 className="text-xl lg:text-2xl text-slate-600 mb-4 font-medium">
+            <h2 className="text-xl lg:text-2xl text-yellow-100 mb-4 font-medium drop-shadow-lg">
               Worldwide Canada
             </h2>
             
-            <p className="text-lg text-slate-600 mb-6 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-lg text-white mb-6 max-w-2xl mx-auto lg:mx-0 drop-shadow-lg">
               {ministryInfo.tagline}
             </p>
 
-            <p className="text-base text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-base text-yellow-100 mb-8 max-w-2xl mx-auto lg:mx-0 drop-shadow-lg">
               In Collaboration With Life-Giving Word Mission Nigeria
             </p>
 
-            <div className="bg-blue-900 text-white px-6 py-4 rounded-lg mb-8 inline-block">
+            <div className="bg-blue-900 bg-opacity-90 backdrop-blur-sm text-white px-6 py-4 rounded-lg mb-8 inline-block shadow-2xl border border-blue-400 border-opacity-30">
               <p className="text-lg font-bold">
                 "{ministryInfo.mandate}"
               </p>
