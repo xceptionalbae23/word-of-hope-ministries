@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime
 
 # Import route modules
-from routes import contact, newsletter, events, donations, prayer
+from routes import contact, newsletter, events, donations, prayer, admin
 from database import init_database, close_database
 
 ROOT_DIR = Path(__file__).parent
