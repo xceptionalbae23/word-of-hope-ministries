@@ -139,7 +139,7 @@ const Hero = () => {
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
               {/* Apostle Sandra Ross - Main */}
-              <div className="col-span-2 relative bg-white rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-500">
+              <div className="col-span-2 relative bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-500 border border-white border-opacity-30">
                 <img
                   src={ministryInfo.leadership[0].image}
                   alt="Apostle Sandra Ross"
@@ -155,7 +155,7 @@ const Hero = () => {
               </div>
               
               {/* Co-Founder David */}
-              <div className="relative bg-white rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500">
+              <div className="relative bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500 border border-white border-opacity-30">
                 <img
                   src={ministryInfo.leadership[2].image}
                   alt="David Murray Ross"
@@ -168,7 +168,7 @@ const Hero = () => {
               </div>
               
               {/* Vice President */}
-              <div className="relative bg-white rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500">
+              <div className="relative bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500 border border-white border-opacity-30">
                 <img
                   src={ministryInfo.leadership[1].image}
                   alt="Bishop Elect Dr. Lawyer Isiwekpeni Ekpaah, PhD"
@@ -182,10 +182,10 @@ const Hero = () => {
             </div>
             
             {/* Floating elements */}
-            <div className="absolute -top-4 -left-4 bg-amber-400 text-white p-3 rounded-full shadow-lg animate-bounce">
+            <div className="absolute -top-4 -left-4 bg-yellow-400 bg-opacity-90 backdrop-blur-sm text-slate-800 p-3 rounded-full shadow-lg animate-bounce border border-yellow-300">
               <Heart size={24} />
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-blue-800 text-white p-3 rounded-full shadow-lg animate-pulse">
+            <div className="absolute -bottom-4 -right-4 bg-blue-600 bg-opacity-90 backdrop-blur-sm text-white p-3 rounded-full shadow-lg animate-pulse border border-blue-400">
               <Users size={24} />
             </div>
           </div>
