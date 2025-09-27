@@ -29,8 +29,8 @@ const Hero = () => {
           backgroundImage: `url('https://customer-assets.emergentagent.com/job_gracepath/artifacts/7kdof6fl_WhatsApp%20Image%202025-09-22%20at%2014.47.50.jpeg')`
         }}
       >
-        {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-blue-900/70 to-purple-800/80"></div>
+        {/* Gradient overlay for better text readability - matching the cosmic purple/pink theme */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/70 via-pink-900/60 to-indigo-900/80"></div>
       </div>
 
       {/* Floating particles effect */}
