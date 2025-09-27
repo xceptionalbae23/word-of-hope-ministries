@@ -1,9 +1,25 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Users, Heart, Play } from 'lucide-react';
-import { ministryInfo } from '../mock';
+import { ministryInfo, isYouTubeLive } from '../mock';
+import SocialMediaLinks from './SocialMediaLinks';
 
 const Hero = () => {
+  const handleJoinCommunity = () => {
+    // Scroll to the social media section or show social links
+    document.getElementById('leadership')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleWatchLive = () => {
+    if (isYouTubeLive) {
+      // Open YouTube live stream
+      window.open(ministryInfo.contact.youtube, '_blank', 'noopener,noreferrer');
+    } else {
+      // Navigate to sermons section
+      document.getElementById('sermons')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="relative bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
       {/* Background pattern */}
@@ -17,9 +33,15 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-center lg:text-left">
-            <div className="inline-flex items-center bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
-              <div className="w-2 h-2 bg-amber-600 rounded-full mr-2"></div>
-              Live Streaming Available
+            <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 ${
+              isYouTubeLive 
+                ? 'bg-red-100 text-red-800 animate-pulse' 
+                : 'bg-amber-100 text-amber-800'
+            }`}>
+              <div className={`w-2 h-2 rounded-full mr-2 ${
+                isYouTubeLive ? 'bg-red-600 animate-pulse' : 'bg-amber-600'
+              }`}></div>
+              {isYouTubeLive ? 'LIVE NOW on YouTube' : 'Live Streaming Available'}
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
@@ -52,6 +74,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
                 size="lg" 
+                onClick={handleJoinCommunity}
                 className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 <Users className="mr-2" size={20} />
@@ -62,15 +85,21 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                onClick={handleWatchLive}
+                className={`border-2 px-8 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  isYouTubeLive 
+                    ? 'border-red-500 text-red-600 hover:bg-red-500 hover:text-white animate-pulse' 
+                    : 'border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white'
+                }`}
               >
                 <Play className="mr-2" size={20} />
-                Watch Live Service
+                {isYouTubeLive ? 'Watch Live Now' : 'Watch Live Service'}
               </Button>
               
               <Button 
                 variant="outline" 
                 size="lg" 
+                onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
                 className="border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 <Heart className="mr-2" size={20} />
@@ -81,7 +110,7 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200">
               <div className="text-center">
-                <p className="text-3xl font-bold text-blue-800">6+</p>
+                <p className="text-3xl font-bold text-blue-800">8</p>
                 <p className="text-sm text-slate-600">Countries Reached</p>
               </div>
               <div className="text-center">
