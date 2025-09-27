@@ -38,10 +38,9 @@ const Leadership = () => {
                     <img
                       src={leader.image}
                       alt={leader.name}
-                      className={`w-32 h-32 rounded-full mx-auto shadow-lg group-hover:scale-105 transition-transform duration-300 ${
-                        index === 1 ? 'object-cover object-center' : 'object-cover object-top'
+                      className={`w-32 h-32 rounded-full mx-auto shadow-lg group-hover:scale-105 transition-transform duration-300 object-cover ${
+                        index === 1 ? 'leadership-photo-vice-president' : 'object-top'
                       }`}
-                      style={index === 1 ? { objectPosition: 'center 20%' } : {}}
                     />
                     {index === 0 && (
                       <div className="absolute -top-2 -right-2 bg-amber-500 text-white p-2 rounded-full">
