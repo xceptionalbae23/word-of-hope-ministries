@@ -34,6 +34,7 @@ api_router.include_router(newsletter.router)
 api_router.include_router(events.router)
 api_router.include_router(donations.router)
 api_router.include_router(prayer.router)
+api_router.include_router(admin.router)
 
 # Existing routes
 class StatusCheck(BaseModel):
