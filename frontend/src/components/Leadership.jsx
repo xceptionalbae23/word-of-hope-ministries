@@ -55,7 +55,9 @@ const Leadership = () => {
                       src={leader.image}
                       alt={leader.name}
                       className={`w-32 h-32 rounded-full mx-auto shadow-lg group-hover:scale-105 transition-transform duration-300 object-cover ${
-                        index === 1 ? 'leadership-photo-vice-president' : 'object-top'
+                        index === 0 ? 'leadership-photo-president' : 
+                        index === 1 ? 'leadership-photo-vice-president' : 
+                        'object-top'
                       }`}
                     />
                     {index === 0 && (
