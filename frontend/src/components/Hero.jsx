@@ -132,8 +132,7 @@ const Hero = () => {
                 <img
                   src={ministryInfo.leadership[1].image}
                   alt="Bishop Elect Dr. Lawyer Isiwekpeni Ekpaah, PhD"
-                  className="w-full h-32 object-cover rounded-lg mb-3"
-                  style={{ objectPosition: 'center 20%' }}
+                  className="w-full h-32 object-cover rounded-lg mb-3 leadership-photo-vice-president"
                 />
                 <div className="text-center">
                   <h4 className="text-lg font-bold text-slate-800">Bishop Elect Dr. Lawyer</h4>
