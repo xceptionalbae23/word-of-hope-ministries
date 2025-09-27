@@ -119,18 +119,18 @@ const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200">
+            <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white border-opacity-30">
               <div className="text-center">
-                <p className="text-3xl font-bold text-blue-800">8</p>
-                <p className="text-sm text-slate-600">Countries Reached</p>
+                <p className="text-3xl font-bold text-yellow-300 drop-shadow-lg">8</p>
+                <p className="text-sm text-white drop-shadow-md">Countries Reached</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-amber-600">25+</p>
-                <p className="text-sm text-slate-600">Years of Ministry</p>
+                <p className="text-3xl font-bold text-yellow-300 drop-shadow-lg">25+</p>
+                <p className="text-sm text-white drop-shadow-md">Years of Ministry</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-green-600">1000+</p>
-                <p className="text-sm text-slate-600">Lives Transformed</p>
+                <p className="text-3xl font-bold text-yellow-300 drop-shadow-lg">1000+</p>
+                <p className="text-sm text-white drop-shadow-md">Lives Transformed</p>
               </div>
             </div>
           </div>
