@@ -131,11 +131,12 @@ const Hero = () => {
               <div className="relative bg-white rounded-2xl shadow-lg p-4 transform hover:scale-105 transition-transform duration-500">
                 <img
                   src={ministryInfo.leadership[1].image}
-                  alt="Bishop Dr. Lawyer Isiwekpeni Ekpaah"
+                  alt="Bishop Elect Dr. Lawyer Isiwekpeni Ekpaah, PhD"
                   className="w-full h-32 object-cover rounded-lg mb-3"
+                  style={{ objectPosition: 'center 20%' }}
                 />
                 <div className="text-center">
-                  <h4 className="text-lg font-bold text-slate-800">Bishop Dr. Lawyer</h4>
+                  <h4 className="text-lg font-bold text-slate-800">Bishop Elect Dr. Lawyer</h4>
                   <p className="text-amber-600 text-sm font-medium">Vice President</p>
                 </div>
               </div>
