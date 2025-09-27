@@ -26,11 +26,13 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://customer-assets.emergentagent.com/job_gracepath/artifacts/7kdof6fl_WhatsApp%20Image%202025-09-22%20at%2014.47.50.jpeg')`
+          backgroundImage: `url('https://customer-assets.emergentagent.com/job_gracepath/artifacts/rxff9f5q_WhatsApp%20Image%202025-09-27%20at%2019.10.48.jpeg')`
         }}
       >
-        {/* Gradient overlay for better text readability - matching the cosmic purple/pink theme */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/70 via-pink-900/60 to-indigo-900/80"></div>
+        {/* Cosmic gradient overlay blending with the background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/60 via-purple-800/50 to-pink-900/70"></div>
+        {/* Additional color blend layer */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
       </div>
 
       {/* Floating particles effect */}
