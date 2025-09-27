@@ -38,8 +38,16 @@
     object-position: center 25% !important;
 }
 
+.leadership-photo-president {
+    object-position: center 20% !important;
+}
+
 @media (max-width: 768px) {
     .leadership-photo-vice-president {
         object-position: center 30% !important;
+    }
+    
+    .leadership-photo-president {
+        object-position: center 25% !important;
     }
 }
