@@ -32,3 +32,14 @@
         transform: rotate(360deg);
     }
 }
+
+/* Custom styles for leadership photos */
+.leadership-photo-vice-president {
+    object-position: center 25% !important;
+}
+
+@media (max-width: 768px) {
+    .leadership-photo-vice-president {
+        object-position: center 30% !important;
+    }
+}
