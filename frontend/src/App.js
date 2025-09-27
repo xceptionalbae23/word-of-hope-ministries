@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,22 +13,35 @@ import Testimonials from './components/Testimonials';
 import Donate from './components/Donate';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AdminPage from './components/AdminPage';
+
+// Main website component
+const MainWebsite = () => (
+  <>
+    <Header />
+    <Hero />
+    <About />
+    <Leadership />
+    <Sermons />
+    <Ministries />
+    <Events />
+    <Testimonials />
+    <Blog />
+    <Donate />
+    <Contact />
+    <Footer />
+  </>
+);
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Hero />
-      <About />
-      <Leadership />
-      <Sermons />
-      <Ministries />
-      <Events />
-      <Testimonials />
-      <Blog />
-      <Donate />
-      <Contact />
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainWebsite />} />
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

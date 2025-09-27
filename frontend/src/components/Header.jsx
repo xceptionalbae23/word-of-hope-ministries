@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Menu, X, Heart, Play, Calendar, Phone } from 'lucide-react';
+import { Menu, X, Heart, Play, Calendar, Phone, Shield } from 'lucide-react';
 import { ministryInfo } from '../mock';
 
 const Header = () => {
@@ -19,6 +19,20 @@ const Header = () => {
     { label: 'Contact', href: '#contact' }
   ];
 
+  const handleNavClick = (href) => {
+    if (href.startsWith('#')) {
+      // Smooth scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // External navigation
+      window.location.href = href;
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50 transition-all duration-300">
       <div className="container mx-auto px-4">
@@ -36,6 +50,7 @@ const Header = () => {
               <Button 
                 variant="ghost" 
                 size="sm" 
+                onClick={() => handleNavClick('#donate')}
                 className="text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors"
               >
                 <Heart size={14} className="mr-1" />
@@ -44,10 +59,20 @@ const Header = () => {
               <Button 
                 variant="ghost" 
                 size="sm" 
+                onClick={() => window.open(ministryInfo.contact.youtube, '_blank')}
                 className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors"
               >
                 <Play size={14} className="mr-1" />
                 Watch Live
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => handleNavClick('/admin')}
+                className="text-slate-600 hover:text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <Shield size={14} className="mr-1" />
+                Admin
               </Button>
             </div>
           </div>
@@ -76,14 +101,14 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.label}
-                  href={item.href}
+                  onClick={() => handleNavClick(item.href)}
                   className="text-slate-700 hover:text-amber-600 font-medium transition duration-300 relative group"
                 >
                   {item.label}
                   <span className="absolute inset-x-0 bottom-0 h-0.5 bg-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </a>
+                </button>
               ))}
             </nav>
 
@@ -104,19 +129,19 @@ const Header = () => {
           <div className="lg:hidden border-t border-gray-100 py-4 bg-white">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.label}
-                  href={item.href}
-                  onClick={toggleMenu}
-                  className="text-slate-700 hover:text-amber-600 font-medium transition duration-300 py-2"
+                  onClick={() => handleNavClick(item.href)}
+                  className="text-slate-700 hover:text-amber-600 font-medium transition duration-300 py-2 text-left"
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <div className="pt-4 border-t border-gray-100 flex flex-col space-y-2">
                 <Button 
                   variant="outline" 
                   size="sm" 
+                  onClick={() => handleNavClick('#donate')}
                   className="text-red-600 border-red-200 hover:bg-red-50"
                 >
                   <Heart size={14} className="mr-1" />
@@ -125,10 +150,20 @@ const Header = () => {
                 <Button 
                   variant="outline" 
                   size="sm" 
+                  onClick={() => window.open(ministryInfo.contact.youtube, '_blank')}
                   className="text-blue-600 border-blue-200 hover:bg-blue-50"
                 >
                   <Play size={14} className="mr-1" />
                   Watch Live
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => handleNavClick('/admin')}
+                  className="text-slate-600 border-slate-200 hover:bg-slate-50"
+                >
+                  <Shield size={14} className="mr-1" />
+                  Admin
                 </Button>
               </div>
             </nav>
