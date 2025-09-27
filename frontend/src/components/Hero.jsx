@@ -132,7 +132,7 @@ const Hero = () => {
                 <img
                   src={ministryInfo.leadership[0].image}
                   alt="Apostle Sandra Ross"
-                  className="w-full h-64 object-cover rounded-lg mb-4"
+                  className="w-full h-64 object-cover rounded-lg mb-4 leadership-photo-president"
                 />
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-slate-800">{ministryInfo.leadership[0].name}</h3>
