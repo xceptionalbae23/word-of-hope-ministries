@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/word-of-hope-ministries/static/css/main.8ccadbca.css",
+    "main.js": "/word-of-hope-ministries/static/js/main.7b61b0a5.js",
+    "index.html": "/word-of-hope-ministries/index.html",
+    "main.8ccadbca.css.map": "/word-of-hope-ministries/static/css/main.8ccadbca.css.map",
+    "main.7b61b0a5.js.map": "/word-of-hope-ministries/static/js/main.7b61b0a5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ccadbca.css",
+    "static/js/main.7b61b0a5.js"
+  ]
+}
