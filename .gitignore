@@ -31,7 +31,10 @@ dist/
 dist
 
 # Environment files (comprehensive coverage)
+*.env
+*.env.*
 
+# Sensitive credentials
 *token.json*
 *credentials.json*
 
@@ -48,7 +51,8 @@ dump.rdb
 
 # Python
 __pycache__/
-*pyc*
+*.pyc
+*.pyo
 venv/
 .venv/
 
@@ -77,7 +81,4 @@ agenthub/agents/youtube/db
 .cache/
 
 # Mobile development
-android-sdk/ -e 
-# Environment files
-*.env
-*.env.*
+android-sdk/

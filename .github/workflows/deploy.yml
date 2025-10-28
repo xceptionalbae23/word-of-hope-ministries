@@ -1,0 +1,67 @@
+name: Deploy Frontend to GoDaddy via SFTP
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy via SFTP
+        uses: milanmk/actions-file-deployer@v1.14
+        with:
+          remote-protocol: "sftp"
+          remote-host: ${{ secrets.SFTP_HOST }}
+          remote-user: ${{ secrets.SFTP_USER }}
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+          remote-path: "/home/<yourusername>/public_html"
+          local-path: "./frontend/build"
+          sync: "delta"
+
+name: Deploy Frontend to GoDaddy via SFTP
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to GoDaddy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SFTP_USER }}
+          server: ${{ secrets.SFTP_HOST }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: ./frontend/build/*
+          remote_path: /home/<yourusername>/public_html/
+
