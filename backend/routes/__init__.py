@@ -1,1 +1,0 @@
-# Routes package for WOHI Ministries API
