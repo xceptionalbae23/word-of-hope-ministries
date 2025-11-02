@@ -59,7 +59,8 @@
     "ajv-keywords": "^3.5.2",
     "gh-pages": "^6.0.0"
   },
-  "homepage": "https://xceptionalbae23.github.io/word-of-hope-ministries",
+  "homepage": "."
+  ,
   "scripts": {
     "start": "craco start",
     "build": "craco build",
