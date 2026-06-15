@@ -73,3 +73,19 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+
+async def save_uploaded_file(file: UploadFile, prefix: str) -> tuple:
+    if file.filename:
+        cloudinary.config(
+            cloud_name=os.environ.get(‘wordofhopeministries’),
+            api_key=os.environ.get('213535953419514'),
+            api_secret=os.environ.get('glGxwmjj5In4Kvtkhe1KaFBWjV0')
+        )
+        content = await file.read()
+        result = cloudinary.uploader.upload(
+            content,
+            public_id=f"{prefix}_{uuid.uuid4()}",
+            folder="whibc"
+        )
+        return result['public_id'], result['secure_url']
+    return None, None
