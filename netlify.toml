@@ -1,7 +1,9 @@
 [build]
-  base = "frontend"
-  command = "npm run build"
-  publish = "build"
+  base    = "frontend"
+  command = "yarn build"
+  publish = "frontend/build"
 
-[build.environment]
-  NODE_VERSION = "20"
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
