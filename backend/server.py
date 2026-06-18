@@ -77,9 +77,10 @@ async def shutdown_db_client():
 async def save_uploaded_file(file: UploadFile, prefix: str) -> tuple:
     if file.filename:
         cloudinary.config(
-            cloud_name=os.environ.get(‘wordofhopeministries’),
-            api_key=os.environ.get('213535953419514'),
-            api_secret=os.environ.get('glGxwmjj5In4Kvtkhe1KaFBWjV0')
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
+)
         )
         content = await file.read()
         result = cloudinary.uploader.upload(
